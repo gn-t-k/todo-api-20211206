@@ -1,7 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { Task } from 'src/domain/task/model/task';
 import { IRegisterTaskCommand } from 'src/domain/task/service/repository/command/register-task-command.interface';
 import { PrismaService } from 'src/nest-module/prisma.service';
 
+@Injectable()
 export class RegisterTaskCommand implements IRegisterTaskCommand {
   public constructor(private readonly prismaService: PrismaService) {}
 
