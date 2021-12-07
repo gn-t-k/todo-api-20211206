@@ -1,5 +1,5 @@
 import { Task } from 'src/domain/task/model/task';
-import { IRegisterTaskCommand } from 'src/domain/task/service/repository/command/register-task-command.interface';
+import { IRegisterTaskCommand } from 'src/domain/task/service/command/register-task-command.interface';
 
 type Props = {
   title: string;

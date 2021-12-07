@@ -14,20 +14,24 @@ export class TaskController {
   public constructor(private readonly taskService: TaskService) {}
 
   @Post()
-  async create(@Body() createTaskDto: CreateTaskDto) {
+  public async create(@Body() createTaskDto: CreateTaskDto) {
     try {
       const { title, body } = createTaskDto;
 
       await this.taskService.createTask({ title, body });
     } catch (error) {
-      if (error instanceof InvalidArgumentError) {
-        throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-      } else {
-        throw new HttpException(
-          'internal server error',
-          HttpStatus.INTERNAL_SERVER_ERROR,
-        );
-      }
+      this.handleError(error);
     }
   }
+
+  private handleError = (error: unknown) => {
+    if (error instanceof InvalidArgumentError) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    } else {
+      throw new HttpException(
+        'internal server error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  };
 }

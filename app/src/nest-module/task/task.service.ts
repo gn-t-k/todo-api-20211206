@@ -1,8 +1,8 @@
-import { Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import {
   IRegisterTaskCommand,
   REGISTER_TASK_COMMAND,
-} from 'src/domain/task/service/repository/command/register-task-command.interface';
+} from 'src/domain/task/service/command/register-task-command.interface';
 import { CreateTask } from 'src/use-case/create-task';
 
 type CreateTaskProps = {
@@ -10,6 +10,7 @@ type CreateTaskProps = {
   body: string;
 };
 
+@Injectable()
 export class TaskService {
   public constructor(
     @Inject(REGISTER_TASK_COMMAND)
