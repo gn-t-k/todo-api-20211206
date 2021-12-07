@@ -61,6 +61,10 @@ describe('Task', () => {
     test('isDoneが同じ', () => {
       expect(task.isDone).toEqual(isDone);
     });
+
+    test('createdAtが同じ', () => {
+      expect(task.createdAt).toEqual(createdAt);
+    });
   });
 
   describe('入力値のバリデーション', () => {

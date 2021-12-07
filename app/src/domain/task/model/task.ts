@@ -46,6 +46,10 @@ export class Task extends AggregateRoot<TaskProps, TaskId> {
     return this.props.isDone;
   }
 
+  public get createdAt() {
+    return this.props.createdAt;
+  }
+
   public changeTitle = (title: string) => {
     this.props.title = title;
 
