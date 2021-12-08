@@ -1,5 +1,5 @@
 import { Task } from 'src/domain/task/model/task';
-import { CreateTask } from './create-task';
+import { CreateTask } from '.';
 
 describe('CreateTask', () => {
   const registerTaskCommand = {
