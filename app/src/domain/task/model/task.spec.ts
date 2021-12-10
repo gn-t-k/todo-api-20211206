@@ -1,4 +1,4 @@
-import { InvalidArgumentError } from 'src/__shared__/invalid-argument-error';
+import { InvalidArgumentError } from 'src/__shared__/error/invalid-argument-error';
 import { Task } from './task';
 
 describe('Task', () => {

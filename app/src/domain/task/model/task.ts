@@ -1,5 +1,5 @@
 import { AggregateRoot } from 'src/domain/__shared__/aggregate-root';
-import { InvalidArgumentError } from 'src/__shared__/invalid-argument-error';
+import { InvalidArgumentError } from 'src/__shared__/error/invalid-argument-error';
 import { TaskId } from './task-id';
 
 type TaskProps = {
