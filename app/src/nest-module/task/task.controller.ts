@@ -6,7 +6,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { InvalidArgumentError } from 'src/__shared__/invalid-argument-error';
-import { CreateTaskDto } from './dto/create-task-dto';
+import { CreateDto } from './dto/create-dto';
 import { TaskService } from './task.service';
 
 @Controller('task')
@@ -14,9 +14,9 @@ export class TaskController {
   public constructor(private readonly taskService: TaskService) {}
 
   @Post()
-  public async create(@Body() createTaskDto: CreateTaskDto) {
+  public async create(@Body() createDto: CreateDto) {
     try {
-      const { title, body } = createTaskDto;
+      const { title, body } = createDto;
 
       await this.taskService.createTask({ title, body });
     } catch (error) {
