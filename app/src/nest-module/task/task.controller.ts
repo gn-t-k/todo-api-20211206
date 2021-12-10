@@ -18,7 +18,7 @@ export class TaskController {
     try {
       const { title, body } = createDto;
 
-      await this.taskService.createTask({ title, body });
+      await this.taskService.create({ title, body });
     } catch (error) {
       this.handleError(error);
     }

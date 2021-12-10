@@ -5,7 +5,7 @@ import {
 } from 'src/domain/task/service/command/register-task-command.interface';
 import { CreateTask } from 'src/use-case/create-task';
 
-type CreateTaskProps = {
+type CreateProps = {
   title: string;
   body: string;
 };
@@ -17,7 +17,7 @@ export class TaskService {
     private readonly registerTaskCommand: IRegisterTaskCommand,
   ) {}
 
-  public createTask = async ({ title, body }: CreateTaskProps) => {
+  public create = async ({ title, body }: CreateProps) => {
     const createTask = new CreateTask(this.registerTaskCommand);
 
     await createTask.execute({ title, body });
