@@ -1,12 +1,6 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpException,
-  HttpStatus,
-  Post,
-} from '@nestjs/common';
-import { InvalidArgumentError } from 'src/__shared__/error/invalid-argument-error';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { handleError } from 'src/__shared__/error/handle-error';
+import { CompleteDto } from './dto/complete-dto';
 import { CreateDto } from './dto/create-dto';
 import { TaskService } from './task.service';
 
@@ -14,36 +8,36 @@ import { TaskService } from './task.service';
 export class TaskController {
   public constructor(private readonly taskService: TaskService) {}
 
-  @Get()
+  @Get('/')
   public async getAll() {
     try {
       const taskList = await this.taskService.getAll();
 
       return taskList;
     } catch (error) {
-      this.handleError(error);
+      handleError(error);
     }
   }
 
-  @Post()
+  @Post('/create')
   public async create(@Body() createDto: CreateDto) {
     try {
       const { title, body } = createDto;
 
       await this.taskService.create({ title, body });
     } catch (error) {
-      this.handleError(error);
+      handleError(error);
     }
   }
 
-  private handleError = (error: unknown) => {
-    if (error instanceof InvalidArgumentError) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    } else {
-      throw new HttpException(
-        'internal server error',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+  @Post('/complete')
+  public async complete(@Body() completeDto: CompleteDto) {
+    try {
+      const { id } = completeDto;
+
+      await this.taskService.complete({ id });
+    } catch (error) {
+      handleError(error);
     }
-  };
+  }
 }
